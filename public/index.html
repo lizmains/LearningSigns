@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Language Dictionary</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    #landing-page {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    #video-container {
+      margin-top: 20px;
+    }
+
+    #learn-signs-btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    #dictionary-page {
+      display: flex;
+    }
+
+    #sidebar {
+      width: 20%;
+      background-color: #f0f0f0;
+      padding: 20px;
+    }
+
+    #content {
+      flex: 1;
+      padding: 20px;
+    }
+
+    #search-bar {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+
+    #selected-sign-video {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Landing Page -->
+  <div id="landing-page">
+    <h1>Hello, world!</h1>
+    <div id="video-container">
+      <!-- Replace 'your-video-source' with the actual video source -->
+      <video width="400" controls>
+        <source src="your-video-source.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <button id="learn-signs-btn" onclick="navigateToDictionary()">Learn signs!</button>
+  </div>
+
+  <!-- Dictionary Page -->
+  <div id="dictionary-page" style="display:none;">
+    <div id="sidebar">
+      <input type="text" id="search-bar" placeholder="Search...">
+      <!-- Replace the list below with your actual word list -->
+      <ul>
+        <li onclick="selectSign('word1')">Word 1</li>
+        <li onclick="selectSign('word2')">Word 2</li>
+        <li onclick="selectSign('word3')">Word 3</li>
+        <!-- Add more words as needed -->
+      </ul>
+    </div>
+    <div id="content">
+      <video id="selected-sign-video" controls>
+        <!-- Video content will be dynamically loaded here -->
+      </video>
+    </div>
+  </div>
+
+  <script>
+    function navigateToDictionary() {
+      document.getElementById('landing-page').style.display = 'none';
+      document.getElementById('dictionary-page').style.display = 'flex';
+    }
+
+    function selectSign(word) {
+      // Replace 'your-video-source' with the actual video source for the selected sign
+      const videoSource = `your-video-source-${word}.mp4`;
+      document.getElementById('selected-sign-video').src = videoSource;
+    }
+  </script>
+
+</body>
+</html>
