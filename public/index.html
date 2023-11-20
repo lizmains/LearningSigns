@@ -71,37 +71,96 @@
     <button id="learn-signs-btn" onclick="navigateToDictionary()">Learn signs!</button>
   </div>
 
-  <!-- Dictionary Page -->
-  <div id="dictionary-page" style="display:none;">
-    <div id="sidebar">
-      <input type="text" id="search-bar" placeholder="Search...">
-      <!-- Replace the list below with your actual word list -->
-      <ul>
-        <li onclick="selectSign('word1')">Word 1</li>
-        <li onclick="selectSign('word2')">Word 2</li>
-        <li onclick="selectSign('word3')">Word 3</li>
-        <!-- Add more words as needed -->
-      </ul>
-    </div>
-    <div id="content">
-      <video id="selected-sign-video" controls>
-        <!-- Video content will be dynamically loaded here -->
-      </video>
-    </div>
+  <!-- ... (previous HTML code) ... -->
+
+<!-- Dictionary Page -->
+<div id="dictionary-page" style="display:none;">
+  <div id="sidebar">
+    <input type="text" id="search-bar" placeholder="Search..." oninput="filterWords()">
+    <!-- Replace the list below with your actual word list -->
+    <ul id="word-list">
+      <li onclick="selectSign('addition')">Addition</li>
+        <li onclick="selectSign('algorithm')">Algorithm</li>
+        <li onclick="selectSign('alphabet')">Alphabet</li>
+        <li onclick="selectSign('binary')">Binary</li>
+        <li onclick="selectSign('bit')">Bit</li>
+        <li onclick="selectSign('bug')">Bug</li>
+        <li onclick="selectSign('byte')">Byte</li>
+        <li onclick="selectSign('class')">Class</li>
+        <li onclick="selectSign('computerscience')">ComputerScience</li>
+        <li onclick="selectSign('cybersecurity')">Cybersecurity</li>
+        <li onclick="selectSign('debug')">Debug</li>
+        <li onclick="selectSign('decimal')">Decimal</li>
+        <li onclick="selectSign('division')">Division</li>
+        <li onclick="selectSign('double')">Double</li>
+        <li onclick="selectSign('download')">Download</li>
+        <li onclick="selectSign('equals')">Equals</li>
+        <li onclick="selectSign('float')">Float</li>
+        <li onclick="selectSign('hex')">Hexadecimal</li>
+        <li onclick="selectSign('int')">Integer</li>
+        <li onclick="selectSign('internet')">Internet</li>
+        <li onclick="selectSign('math')">Math</li>
+        <li onclick="selectSign('method')">Method</li>
+        <li onclick="selectSign('mod')">Mod</li>
+        <li onclick="selectSign('multiplication')">Multiplication</li>
+        <li onclick="selectSign('numbers')">Numbers</li>
+        <li onclick="selectSign('opsys')">Operating System</li>
+        <li onclick="selectSign('pi')">Pi</li>
+        <li onclick="selectSign('subtraction')">Subtraction</li>
+        <li onclick="selectSign('upload')">Upload</li>
+      <!-- Add more words as needed -->
+    </ul>
   </div>
+  <div id="content">
+    <video id="selected-sign-video" controls>
+      <!-- Video content will be dynamically loaded here -->
+    </video>
+  </div>
+</div>
 
-  <script>
-    function navigateToDictionary() {
-      document.getElementById('landing-page').style.display = 'none';
-      document.getElementById('dictionary-page').style.display = 'flex';
+<script>
+  function navigateToDictionary() {
+    document.getElementById('landing-page').style.display = 'none';
+    document.getElementById('dictionary-page').style.display = 'flex';
+  }
+
+  function selectSign(word) {
+    // Remove the "selected" class from all list items
+    const wordListItems = document.querySelectorAll('#word-list li');
+    wordListItems.forEach(item => item.classList.remove('selected'));
+
+    // Add the "selected" class to the clicked list item
+    const selectedWord = document.querySelector(`#word-list li:contains('${word}')`);
+    if (selectedWord) {
+      selectedWord.classList.add('selected');
     }
 
-    function selectSign(word) {
-      // Replace 'your-video-source' with the actual video source for the selected sign
-      const videoSource = `your-video-source-${word}.mp4`;
-      document.getElementById('selected-sign-video').src = videoSource;
-    }
-  </script>
+    // Replace 'your-video-source' with the actual video source for the selected sign
+    const videoSource = `your-video-source-${word}.mp4`;
+    document.getElementById('selected-sign-video').src = videoSource;
+  }
+
+  // Helper function to filter words based on the search bar input
+  function filterWords() {
+    const searchTerm = document.getElementById('search-bar').value.toLowerCase();
+    const wordListItems = document.querySelectorAll('#word-list li');
+
+    wordListItems.forEach(item => {
+      const word = item.textContent.toLowerCase();
+      if (word.includes(searchTerm)) {
+        item.style.display = 'block';
+      } else {
+        item.style.display = 'none';
+      }
+    });
+  }
+
+  // Custom contains selector for case-insensitive matching
+  jQuery.expr[':'].contains = (a, i, m) => jQuery(a).text().toUpperCase().indexOf(m[3].toUpperCase()) >= 0;
+</script>
+
+<!-- ... (remaining HTML code) ... -->
+
 
 </body>
 </html>
