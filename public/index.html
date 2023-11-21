@@ -17,6 +17,9 @@
       justify-content: center;
       height: 100vh;
     }
+    #word-list {
+      list-style-type: none;
+    } 
 
     #video-container {
       margin-top: 20px;
@@ -57,6 +60,7 @@
   </style>
 </head>
 <body>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
   <!-- Landing Page -->
   <div id="landing-page">
@@ -64,7 +68,7 @@
     <div id="video-container">
       <!-- Replace 'your-video-source' with the actual video source -->
       <video width="400" controls>
-        <source src="your-video-source.mp4" type="video/mp4">
+        <source src="mp4-sources" type="video/mp4">
         Your browser does not support the video tag.
       </video>
     </div>
@@ -79,35 +83,37 @@
     <input type="text" id="search-bar" placeholder="Search..." oninput="filterWords()">
     <!-- Replace the list below with your actual word list -->
     <ul id="word-list">
-      <li onclick="selectSign('addition')">Addition</li>
-        <li onclick="selectSign('algorithm')">Algorithm</li>
-        <li onclick="selectSign('alphabet')">Alphabet</li>
-        <li onclick="selectSign('binary')">Binary</li>
-        <li onclick="selectSign('bit')">Bit</li>
-        <li onclick="selectSign('bug')">Bug</li>
-        <li onclick="selectSign('byte')">Byte</li>
-        <li onclick="selectSign('class')">Class</li>
-        <li onclick="selectSign('computerscience')">ComputerScience</li>
-        <li onclick="selectSign('cybersecurity')">Cybersecurity</li>
-        <li onclick="selectSign('debug')">Debug</li>
-        <li onclick="selectSign('decimal')">Decimal</li>
-        <li onclick="selectSign('division')">Division</li>
-        <li onclick="selectSign('double')">Double</li>
-        <li onclick="selectSign('download')">Download</li>
-        <li onclick="selectSign('equals')">Equals</li>
-        <li onclick="selectSign('float')">Float</li>
-        <li onclick="selectSign('hex')">Hexadecimal</li>
-        <li onclick="selectSign('int')">Integer</li>
-        <li onclick="selectSign('internet')">Internet</li>
-        <li onclick="selectSign('math')">Math</li>
-        <li onclick="selectSign('method')">Method</li>
-        <li onclick="selectSign('mod')">Mod</li>
-        <li onclick="selectSign('multiplication')">Multiplication</li>
-        <li onclick="selectSign('numbers')">Numbers</li>
-        <li onclick="selectSign('opsys')">Operating System</li>
-        <li onclick="selectSign('pi')">Pi</li>
-        <li onclick="selectSign('subtraction')">Subtraction</li>
-        <li onclick="selectSign('upload')">Upload</li>
+      <li><button onclick="selectSign('addition')">Addition</button></li>
+      <li><button onclick="selectSign('algorithm')">Algorithm</button></li>
+      <li><button onclick="selectSign('alphabet')">Alphabet</button></li>
+      <li><button onclick="selectSign('binary')">Binary</button></li>
+      <li><button onclick="selectSign('bit')">Bit</button></li>
+      <li><button onclick="selectSign('bug')">Bug</button></li>
+      <li><button onclick="selectSign('byte')">Byte</button></li>
+      <li><button onclick="selectSign('class')">Class</button></li>
+      <li><button onclick="selectSign('computerscience')">Computer_Science</button></li>
+      <li><button onclick="selectSign('cybersecurity')">Cybersecurity</button></li>
+      <li><button onclick="selectSign('debug')">Debug</button></li>
+      <li><button onclick="selectSign('decimal')">Decimal</button></li>
+      <li><button onclick="selectSign('division')">Division</button></li>
+      <li><button onclick="selectSign('double')">Double</button></li>
+      <li><button onclick="selectSign('download')">Download</button></li>
+      <li><button onclick="selectSign('equals')">Equals</button></li>
+      <li><button onclick="selectSign('float')">Float</button></li>
+      <li><button onclick="selectSign('hexadecimal')">Hexadecimal</button></li>
+      <li><button onclick="selectSign('integer')">Integer</button></li>
+      <li><button onclick="selectSign('internet')">Internet</button></li>
+      <li><button onclick="selectSign('math')">Math</button></li>
+      <li><button onclick="selectSign('method')">Method</button></li>
+      <li><button onclick="selectSign('mod')">Mod</button></li>
+      <li><button onclick="selectSign('multiplication')">Multiplication</button></li>
+      <li><button onclick="selectSign('number')">Number</button></li>
+      <li><button onclick="selectSign('operatingsystem')">Operating_System</button></li>
+      <li><button onclick="selectSign('pi')">PI</button></li>
+      <li><button onclick="selectSign('subtraction')">Subtraction</button></li>
+      <li><button onclick="selectSign('upload')">Upload</button></li>
+
+
       <!-- Add more words as needed -->
     </ul>
   </div>
@@ -126,17 +132,17 @@
 
   function selectSign(word) {
     // Remove the "selected" class from all list items
-    const wordListItems = document.querySelectorAll('#word-list li');
-    wordListItems.forEach(item => item.classList.remove('selected'));
+    // const wordListItems = document.querySelectorAll('#word-list li');
+    // wordListItems.forEach(item => item.classList.remove('selected'));
 
-    // Add the "selected" class to the clicked list item
-    const selectedWord = document.querySelector(`#word-list li:contains('${word}')`);
-    if (selectedWord) {
-      selectedWord.classList.add('selected');
-    }
+    // // Add the "selected" class to the clicked list item
+    // const selectedWord = document.querySelector(`#word-list li:contains('${word}')`);
+    // if (selectedWord) {
+    //   selectedWord.classList.add('selected');
+    // }
 
     // Replace 'your-video-source' with the actual video source for the selected sign
-    const videoSource = `your-video-source-${word}.mp4`;
+    const videoSource = `mp4-sources/${word.toLowerCase()}.mp4`;
     document.getElementById('selected-sign-video').src = videoSource;
   }
 
