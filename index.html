@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Language Dictionary</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    #landing-page {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    #word-list {
+      list-style-type: none;
+    } 
+
+    #video-container {
+      margin-top: 20px;
+    }
+
+    #learn-signs-btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    #dictionary-page {
+      display: flex;
+    }
+
+    #sidebar {
+      width: 20%;
+      background-color: #f0f0f0;
+      padding: 20px;
+    }
+
+    #content {
+      flex: 1;
+      padding: 20px;
+    }
+
+    #search-bar {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+
+    #selected-sign-video {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+  <!-- Landing Page -->
+  <div id="landing-page">
+    <h1>Hello, world!</h1>
+    <div id="video-container">
+      <!-- Replace 'your-video-source' with the actual video source -->
+      <video width="400" controls>
+        <source src="mp4-sources\computerscience.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <button id="learn-signs-btn" onclick="navigateToDictionary()">Learn signs!</button>
+  </div>
+
+  <!-- ... (previous HTML code) ... -->
+
+<!-- Dictionary Page -->
+<div id="dictionary-page" style="display:none;">
+  <div id="sidebar">
+    <input type="text" id="search-bar" placeholder="Search..." oninput="filterWords()">
+    <!-- Replace the list below with your actual word list -->
+    <ul id="word-list">
+      <li><button onclick="selectSign('addition')">Addition</button></li>
+      <li><button onclick="selectSign('algorithm')">Algorithm</button></li>
+      <li><button onclick="selectSign('alphabet')">Alphabet</button></li>
+      <li><button onclick="selectSign('binary')">Binary</button></li>
+      <li><button onclick="selectSign('bit')">Bit</button></li>
+      <li><button onclick="selectSign('bug')">Bug</button></li>
+      <li><button onclick="selectSign('byte')">Byte</button></li>
+      <li><button onclick="selectSign('class')">Class</button></li>
+      <li><button onclick="selectSign('computerscience')">Computer_Science</button></li>
+      <li><button onclick="selectSign('cybersecurity')">Cybersecurity</button></li>
+      <li><button onclick="selectSign('debug')">Debug</button></li>
+      <li><button onclick="selectSign('decimal')">Decimal</button></li>
+      <li><button onclick="selectSign('division')">Division</button></li>
+      <li><button onclick="selectSign('double')">Double</button></li>
+      <li><button onclick="selectSign('download')">Download</button></li>
+      <li><button onclick="selectSign('equals')">Equals</button></li>
+      <li><button onclick="selectSign('float')">Float</button></li>
+      <li><button onclick="selectSign('hexadecimal')">Hexadecimal</button></li>
+      <li><button onclick="selectSign('integer')">Integer</button></li>
+      <li><button onclick="selectSign('internet')">Internet</button></li>
+      <li><button onclick="selectSign('math')">Math</button></li>
+      <li><button onclick="selectSign('method')">Method</button></li>
+      <li><button onclick="selectSign('mod')">Mod</button></li>
+      <li><button onclick="selectSign('multiplication')">Multiplication</button></li>
+      <li><button onclick="selectSign('number')">Number</button></li>
+      <li><button onclick="selectSign('operatingsystem')">Operating_System</button></li>
+      <li><button onclick="selectSign('pi')">PI</button></li>
+      <li><button onclick="selectSign('subtraction')">Subtraction</button></li>
+      <li><button onclick="selectSign('upload')">Upload</button></li>
+
+
+      <!-- Add more words as needed -->
+    </ul>
+  </div>
+  <div id="content">
+    <video id="selected-sign-video" controls>
+      <!-- Video content will be dynamically loaded here -->
+    </video>
+  </div>
+</div>
+
+<script>
+  function navigateToDictionary() {
+    document.getElementById('landing-page').style.display = 'none';
+    document.getElementById('dictionary-page').style.display = 'flex';
+  }
+
+  function selectSign(word) {
+    // Remove the "selected" class from all list items
+    // const wordListItems = document.querySelectorAll('#word-list li');
+    // wordListItems.forEach(item => item.classList.remove('selected'));
+
+    // // Add the "selected" class to the clicked list item
+    // const selectedWord = document.querySelector(`#word-list li:contains('${word}')`);
+    // if (selectedWord) {
+    //   selectedWord.classList.add('selected');
+    // }
+
+    // Replace 'your-video-source' with the actual video source for the selected sign
+    const videoSource = `mp4-sources/${word.toLowerCase()}.mp4`;
+    document.getElementById('selected-sign-video').src = videoSource;
+  }
+
+  // Helper function to filter words based on the search bar input
+  function filterWords() {
+    const searchTerm = document.getElementById('search-bar').value.toLowerCase();
+    const wordListItems = document.querySelectorAll('#word-list li');
+
+    wordListItems.forEach(item => {
+      const word = item.textContent.toLowerCase();
+      if (word.includes(searchTerm)) {
+        item.style.display = 'block';
+      } else {
+        item.style.display = 'none';
+      }
+    });
+  }
+
+  // Custom contains selector for case-insensitive matching
+  jQuery.expr[':'].contains = (a, i, m) => jQuery(a).text().toUpperCase().indexOf(m[3].toUpperCase()) >= 0;
+</script>
+
+<!-- ... (remaining HTML code) ... -->
+
+
+</body>
+</html>
